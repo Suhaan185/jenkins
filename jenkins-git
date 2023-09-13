@@ -1,0 +1,64 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                // Use Maven for building
+                sh 'mvn clean package'
+            }
+        }
+        stage('Unit and Integration Tests') {
+            steps {
+                // Use testing tools like JUnit, TestNG, or any preferred tool
+                sh 'mvn test'
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                // Integrate a code analysis tool like SonarQube
+                sh 'sonar-scanner'
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                // Integrate a security scanning tool like OWASP ZAP or SonarQube
+                sh 'security-scan-command'
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                // Use deployment tools like AWS CodeDeploy, Docker, etc.
+                sh 'deploy-to-staging-script.sh'
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                // Run integration tests on the staging environment
+                sh 'run-integration-tests-on-staging.sh'
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                // Use deployment tools to deploy to production
+                sh 'deploy-to-production-script.sh'
+            }
+        }
+    }
+    
+    post {
+        failure {
+            // Send failure email notification
+            emailext subject: "Pipeline Failed: ${currentBuild.fullDisplayName}",
+                      body: "The pipeline has failed. Please check the logs.",
+                      to: 'suhaandevg@gmail.com' 
+        }
+        success {
+            // Send success email notification with attached logs
+            emailext subject: "Pipeline Successful: ${currentBuild.fullDisplayName}",
+                      body: "The pipeline has successfully completed. Please find the logs attached.",
+                      to: 'suhaandevg@gmail.com' 
+            archiveArtifacts artifacts: '**/build.log', onlyIfSuccessful: true
+        }
+    }
+}
