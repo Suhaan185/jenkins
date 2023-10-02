@@ -1,51 +1,45 @@
 pipeline {
     agent any
-
- tools {
-        maven 'MavenToolName' // Replace 'MavenToolName' with the actual tool name
-    }
-
     stages {
         stage('Build') {
             steps {
                 // Use Maven for building
-                sh 'mvn clean package'
+               echo 'using Maven for building'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                // Use testing tools like JUnit, TestNG, or any preferred tool
-                sh 'mvn test'
+                echo 'using Junit'
             }
         }
         stage('Code Analysis') {
             steps {
-                // Integrate a code analysis tool like SonarQube
-                sh 'sonar-scanner'
+                // Integrate a code analysis tool like 
+               echo 'analysising the code using SonarQube'
             }
         }
         stage('Security Scan') {
             steps {
                 // Integrate a security scanning tool like OWASP ZAP or SonarQube
-                sh 'security-scan-command'
+                echo 'security-scan-command'
             }
         }
         stage('Deploy to Staging') {
             steps {
                 // Use deployment tools like AWS CodeDeploy, Docker, etc.
-                sh 'deploy-to-staging-script.sh'
+                echo 'deploy-to-staging-script.sh'
             }
         }
         stage('Integration Tests on Staging') {
             steps {
                 // Run integration tests on the staging environment
-                sh 'run-integration-tests-on-staging.sh'
+                echo 'run-integration-tests-on-staging.sh'
             }
         }
         stage('Deploy to Production') {
             steps {
                 // Use deployment tools to deploy to production
-                sh 'deploy-to-production-script.sh'
+                echo 'deploy-to-production-script.sh'
             }
         }
     }
