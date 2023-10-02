@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Unit and Integration Tests') {
             steps {
-                echo 'using Junit'
+                echo 'using Juniit'
             }
         }
         stage('Code Analysis') {
