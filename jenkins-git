@@ -46,7 +46,7 @@ pipeline {
     
     post {
         failure {
-             Send failure email notification
+            // Send failure email notification
              emailext subject: "Pipeline Failed: ${currentBuild.fullDisplayName}",
                       body: "The pipeline has failed. Please check the logs.",
                       to: 'suhaandevg@gmail.com' 
