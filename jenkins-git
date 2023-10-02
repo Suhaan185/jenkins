@@ -1,6 +1,10 @@
 pipeline {
     agent any
-    
+
+ tools {
+        maven 'MavenToolName' // Replace 'MavenToolName' with the actual tool name
+    }
+
     stages {
         stage('Build') {
             steps {
