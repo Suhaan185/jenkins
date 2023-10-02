@@ -3,43 +3,41 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Use Maven for building
+            
                echo 'using Maven for building'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                echo 'using Juniit'
+                echo 'using Junit for integration testing'
             }
         }
         stage('Code Analysis') {
             steps {
-                // Integrate a code analysis tool like 
+                
                echo 'analysising the code using SonarQube'
             }
         }
         stage('Security Scan') {
             steps {
-                // Integrate a security scanning tool like OWASP ZAP or SonarQube
-                echo 'security-scan-command'
+               
+                echo 'security scan with OWASP ZAP'
             }
         }
         stage('Deploy to Staging') {
             steps {
-                // Use deployment tools like AWS CodeDeploy, Docker, etc.
-                echo 'deploy-to-staging-script.sh'
+                echo 'Use deployment tools Docker'
             }
         }
         stage('Integration Tests on Staging') {
             steps {
-                // Run integration tests on the staging environment
-                echo 'run-integration-tests-on-staging.sh'
+                echo 'Running integration tests on staging environment'
             }
         }
         stage('Deploy to Production') {
             steps {
-                // Use deployment tools to deploy to production
-                echo 'deploy-to-production-script.sh'
+               
+                echo 'Using Deployment tool'
             }
         }
     }
