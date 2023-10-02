@@ -44,13 +44,13 @@ pipeline {
         }
     }
     
-    post// {
-      //  failure {
-            // Send failure email notification
-            //emailext subject: "Pipeline Failed: ${currentBuild.fullDisplayName}",
-              //        body: "The pipeline has failed. Please check the logs.",
-                //      to: 'suhaandevg@gmail.com' 
-      //  }
+    post {
+        failure {
+             Send failure email notification
+             emailext subject: "Pipeline Failed: ${currentBuild.fullDisplayName}",
+                      body: "The pipeline has failed. Please check the logs.",
+                      to: 'suhaandevg@gmail.com' 
+        }
         success {
             // Send success email notification with attached logs
             emailext subject: "Pipeline Successful: ${currentBuild.fullDisplayName}",
